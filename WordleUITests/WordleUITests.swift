@@ -24,10 +24,23 @@ final class WordleUITests: XCTestCase {
 
     func testExample() throws {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+                let app = XCUIApplication()
+                app.launch()
+                
+                // Verify that the "Start Game" button exists on the launch screen.
+                let startGameButton = app.buttons["Start Game"]
+                XCTAssertTrue(startGameButton.waitForExistence(timeout: 5), "The 'Start Game' button should exist on launch")
+                
+                // Tap the "Start Game" button to navigate into the game.
+                startGameButton.tap()
+                
+                // Verify that the game board appears after tapping the button.
+                let gameBoard = app.otherElements["GameBoard"]
+                XCTAssertTrue(gameBoard.waitForExistence(timeout: 5), "The game board should appear after starting the game")
+                
+                // Optionally, check that a specific row (e.g., the first row) exists in the game board.
+                let firstRow = gameBoard.descendants(matching: .other).matching(identifier: "Row0").element
+                XCTAssertTrue(firstRow.exists, "The first row of the game board should exist after starting the game")
     }
 
     func testLaunchPerformance() throws {

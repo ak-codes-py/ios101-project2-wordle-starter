@@ -19,14 +19,21 @@ final class WordleUITestsLaunchTests: XCTestCase {
 
     func testLaunch() throws {
         let app = XCUIApplication()
-        app.launch()
-
-        // Insert steps here to perform after app launch but before taking a screenshot,
-        // such as logging into a test account or navigating somewhere in the app
-
-        let attachment = XCTAttachment(screenshot: app.screenshot())
-        attachment.name = "Launch Screen"
-        attachment.lifetime = .keepAlways
-        add(attachment)
-    }
+                app.launch()
+                
+               
+                let startGameButton = app.buttons["Start Game"]
+                if startGameButton.waitForExistence(timeout: 5) {
+                    startGameButton.tap()
+                }
+                
+                
+                let gameBoard = app.otherElements["GameBoard"]
+                XCTAssertTrue(gameBoard.waitForExistence(timeout: 5), "The game board should appear after tapping Start Game.")
+                
+                let attachment = XCTAttachment(screenshot: app.screenshot())
+                attachment.name = "Launch Screen"
+                attachment.lifetime = .keepAlways
+                add(attachment)
+            }
 }

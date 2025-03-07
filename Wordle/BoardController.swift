@@ -49,9 +49,8 @@ class BoardController: NSObject,
   // This function should reset the board with the current settings without changing the goalWord
   // Tip: Take a look at how resetBoard is implemented above. The only difference is that you don't want to change the settings
   func resetBoardWithCurrentSettings() {
-    // START YOUR CODE HERE
-    // ...
-    // END YOUR CODE HERE
+      numTimesGuessed = 0
+      collectionView.reloadData()
   }
   
   // Exercise 1: Implement applyNumLettersSettings to change the number of letters in the goal word
@@ -61,9 +60,9 @@ class BoardController: NSObject,
   // Tip 4: You will need to cast the value to the correct type
   // Checkpoint: Correctly implementing this should allow you to change the number of letters in the goal word!
   private func applyNumLettersSettings(with settings: [String: Any]) {
-    // START YOUR CODE HERE
-    // ...
-    // END YOUR CODE HERE
+      if let numLetters = settings[kNumLettersKey] as? Int {
+            numItemsPerRow = numLetters
+          }
   }
   
   // Exercise 2: Implement applyNumGuessesSettings to change the number of rows in the board
@@ -73,9 +72,9 @@ class BoardController: NSObject,
   // Tip 4: You will need to cast the value to the correct type
   // Checkpoint: Correctly implementing this should allow you to change the number of rows in the board!
   private func applyNumGuessesSettings(with settings: [String: Any]) {
-    // START YOUR CODE HERE
-    // ...
-    // END YOUR CODE HERE
+      if let numGuesses = settings[kNumGuessesKey] as? Int {
+          numRows = numGuesses
+        }
   }
   
   // Exercise 3: Implement applyThemeSettings to change the goal word according to the theme
@@ -86,9 +85,10 @@ class BoardController: NSObject,
   // Checkpoint: Correctly implementing this should allow you to change the theme of the goal word! Use breakpoints or print statements
   // to check the before/after value of goalWord and see if it changes to the correct theme
   private func applyThemeSettings(with settings: [String: Any]) {
-    // START YOUR CODE HERE
-    // ...
-    // END YOUR CODE HERE
+      if let themeString = settings[kWordThemeKey] as? String,
+             let theme = WordTheme(rawValue: themeString) {
+            goalWord = WordGenerator.generateGoalWord(with: theme)
+          }
   }
   
   // Exercise 4: Implement applyIsAlienWordleSettings to change the goal word after each guess
@@ -96,8 +96,8 @@ class BoardController: NSObject,
   // Tip 2: There is a corresponding property located in this file that you should assign the value of the setting to (look at the "Properties" section above).
   // Checkpoint: Correctly implementing this function should change the goal word each time the user inputs an entire row of letters
   private func applyIsAlienWordleSettings(with settings: [String: Any]) {
-    // START YOUR CODE HERE
-    // ...
-    // START YOUR CODE HERE
+      if let alienSetting = settings[kIsAlienWordleKey] as? Bool {
+            isAlienWordle = alienSetting
+          }
   }
 }
