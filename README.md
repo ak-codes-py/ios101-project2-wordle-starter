@@ -25,6 +25,8 @@ The following **optional** features are implemented:
 
 [https://www.loom.com/share/5f00c18fd1ec4beab5de59bc23cf8bc7?sid=8c6a15b4-938a-4f93-b902-41f842ec5c49] .
 
+[https://github.com/ak-codes-py/ios101-project2-wordle-starter/blob/main/part-2.gif]
+
 
 
 ## Notes
