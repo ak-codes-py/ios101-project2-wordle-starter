@@ -31,7 +31,7 @@ The following **optional** features are implemented:
 
 ## Notes
 
-#Challages:
+#Challenges:
 
 - Tap reset button was out of boardcontroller scope which took me a while figure out.
   
